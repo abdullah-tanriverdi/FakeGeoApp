@@ -30,9 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  maplibre_gl: ^0.20.0
-  geolocator: ^13.0.2
-  url_launcher: ^6.0.10
+  maplibre_gl: ^0.20.0 # Harita gösterimi ve etkileşim için MapLibre GL Flutter paketi
+  geolocator: ^13.0.2 # Kullanıcının cihaz konumunu almak için Geolocator paketi
+  url_launcher: ^6.0.10 # Harici URL'leri açmak
 
 
   # The following adds the Cupertino Icons font to your application.

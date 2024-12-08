@@ -28,10 +28,13 @@
 
 
 
-	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>We need your location for navigation purposes.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>We need your location for navigation purposes.</string>
+<!-- Kullanıcının konumunu yalnızca uygulama kullanımdayken alabilmek için gerekli açıklama -->
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>We need your location for navigation purposes.</string>
+
+<!-- Kullanıcının konumunu her zaman alabilmek için gerekli açıklama (arka planda da olsa) -->
+<key>NSLocationAlwaysUsageDescription</key>
+<string>We need your location for navigation purposes.</string>
 
 
 

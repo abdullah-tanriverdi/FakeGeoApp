@@ -7,69 +7,37 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
-
 class _HomeState extends State<Home> {
+
+  //Geolocatordan gelen mevcut konum değişkeni
   Position? _currentPosition;
+
 
   @override
   void initState() {
     super.initState();
+    //Uygulama açıldığında mevcut konumu almak için çağrılır
     _getCurrentLocation();
   }
 
-  // Konum izni kontrolü ve alınması
+  //Mevcut konumu almak için fonksiyon
   Future<void> _getCurrentLocation() async {
-    Position? position = await LocationService.getCurrentLocation();
 
-    // Eğer konum alınamadıysa, izin verilmediğini kontrol et
-    if (position == null) {
-      LocationPermission permission = await Geolocator.checkPermission();
+    //Konum servisini kullanarak mevcut konumu alır
+    Position? position = await ServiceLocation.getCurrentLocation(context);
 
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever) {
-        _showPermissionDeniedMessage();
-      }
-    }
-
+    //Konum alındığında durumu güncelle
     setState(() {
       _currentPosition = position;
     });
   }
-
-  // Konum izni reddedildiğinde gösterilecek bilgilendirme mesajı
-  void _showPermissionDeniedMessage() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Konum İzni Gerekli'),
-          content: Text('Konum izni verilmedi. Lütfen izin vermek için "Tamam" butonuna basın.'),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Tamam'),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                // Konum iznini tekrar iste
-                LocationPermission permission = await Geolocator.requestPermission();
-
-                if (permission == LocationPermission.whileInUse || permission == LocationPermission.always) {
-                  _getCurrentLocation();
-                } else {
-                  _showPermissionDeniedMessage();
-                }
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //Konum alınmamışsa yükleniyor göstergesi
       body: _currentPosition == null
           ? Center(child: CircularProgressIndicator())
+      //Konum alındığında map widgetı gösterilir
           : WidgetMap(currentPosition: _currentPosition),
     );
   }

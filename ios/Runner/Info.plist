@@ -25,6 +25,19 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
+
+
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location for navigation purposes.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location for navigation purposes.</string>
+
+
+
+
+
+
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

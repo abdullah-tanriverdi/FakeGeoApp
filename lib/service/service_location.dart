@@ -21,7 +21,7 @@ class ServiceLocation {
     //İzin verilmemişse işlem başlatılır
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      
+
       //İzin vermezse
       if (permission != LocationPermission.whileInUse && permission != LocationPermission.always) {
         _showPermissionDeniedDialog(context);

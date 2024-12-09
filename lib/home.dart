@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:fakegeo/service/service_location.dart';
@@ -31,14 +32,23 @@ class _HomeState extends State<Home> {
       _currentPosition = position;
     });
   }
+  // Konum alındığında çağrılacak callback fonksiyonu
+  void _onLocationSelected(Position position) {
+    setState(() {
+      _currentPosition = position;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //Konum alınmamışsa yükleniyor göstergesi
-      body: _currentPosition == null
-          ? Center(child: CircularProgressIndicator())
-      //Konum alındığında map widgetı gösterilir
-          : WidgetMap(currentPosition: _currentPosition),
+      body: Stack(
+        children: [
+          WidgetMap(currentPosition: _currentPosition),
+
+        ],
+      ),
     );
   }
 }
